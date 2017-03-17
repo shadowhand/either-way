@@ -40,7 +40,7 @@ a response is up to you, the only requirement is that the error handler will ret
 a PSR-7 `ResponseInterface`.
 
 ```php
-use Shadowhand\EitherWay\Route;
+use EitherWay\Route;
 
 $handleSuccess = function (Route $route) use ($container): ResponseInterface {
     $handler = $container->get($route->handler());
@@ -68,7 +68,7 @@ $response = dispatch($request, $dispatcher)
     ->either($handleError, $handleSuccess);
 ```
 
-At this point, the response can be sent or modified further.
+At this point, the response can modified and ultimately sent.
 
 ## License
 
