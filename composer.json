@@ -1,0 +1,14 @@
+{
+    "name": "shadowhand/either-way",
+    "description": "A functional route dispatcher",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Woody Gilk",
+            "email": "woody.gilk@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
