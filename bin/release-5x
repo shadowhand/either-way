@@ -1,0 +1,28 @@
+#!/bin/bash
+version="$1"
+
+if [ -z "$version" ]; then
+    echo "Release what version?"
+    exit 1
+fi
+
+git checkout -tb compat-release
+
+composer run php5ize
+composer run test
+
+if [ $? -gt 0 ]; then
+    echo "Tests failed, aborting release $version!"
+    exit 1
+fi
+
+git commit -a -m "Release $version for PHP 5.x"
+git tag $version
+git push -u origin
+git push --tags
+git checkout master
+git branch -D compat-release
+git push origin :compat-release
+
+echo "Version $version released! Tweet that noise!"
+
