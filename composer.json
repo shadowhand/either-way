@@ -14,7 +14,8 @@
         "php": ">=7.0",
         "nikic/fast-route": "^1.2",
         "php-fp/php-fp-either": "^1.0",
-        "psr/http-message": "^1.0"
+        "psr/http-message": "^1.0",
+        "spatie/7to5": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0",
@@ -32,5 +33,15 @@
         "psr-4": {
             "EitherWay\\": "tests/"
         }
+    },
+    "scripts": {
+        "php5ize": [
+            "php7to5 convert --overwrite --copy-all -- src/ src-php5/",
+            "php7to5 convert --overwrite --copy-all -- tests/ tests-php5/",
+            "rm -rf src && mv src-php5 src",
+            "rm -rf tests && mv tests-php5 tests",
+            "sed -i '' -e 's/=5.6/=5.6/' composer.json"
+        ],
+        "test": "phpunit"
     }
 }
